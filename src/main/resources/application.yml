@@ -1,0 +1,9 @@
+server:
+  port: 85630
+
+com:
+  delete-file:
+    filePath: E:\\BaiduSyncdisk\\FINAL FANTASY VII REMAKE
+    suffix: zip
+    fileName: 最终幻想7-重置版
+    cron: 0 0/10 * * * ?
