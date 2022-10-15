@@ -9,10 +9,10 @@
         <relativePath/>
     </parent>
     <groupId>com.yiyh.file</groupId>
-    <artifactId>file-delete</artifactId>
+    <artifactId>game-archive</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>file-delete</name>
-    <description>file-delete</description>
+    <name>game-archive</name>
+    <description>game-archive</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
