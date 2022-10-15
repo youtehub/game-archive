@@ -15,6 +15,9 @@ import com.yiyh.archive.util.ZipUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+/**
+ * 最终幻想7-重置版的游戏存档
+ */
 @Component
 public class FF7ReArchiveService {
 
@@ -28,9 +31,9 @@ public class FF7ReArchiveService {
     private String suffix;
     @Value("${ff7re.fileName}")
     private String fileName;
-    @Value("${ff7re.datePattern}")
+    @Value("${datePattern}")
     private String datePattern;
-    @Value("${ff7re.number}")
+    @Value("${number}")
     private Integer number;
 
     public void cleanExpiredFile() {
