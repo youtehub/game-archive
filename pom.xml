@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
     <groupId>com.yiyh.file</groupId>
-    <artifactId>fileDelete</artifactId>
+    <artifactId>file-delete</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>file-delete</name>
     <description>file-delete</description>
