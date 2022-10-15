@@ -55,14 +55,14 @@ public class ZipUtil {
         out.close();
     }
 
-    public static void generateFile(FF7ReArchiveService FF7ReArchiveService) {
+    public static void generateFile(FF7ReArchiveService ff7ReArchiveService) {
         for (int i = 0; i < 15; i++) {
             try {
                 Thread.sleep(10000L);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            FF7ReArchiveService.zipFile();
+            ff7ReArchiveService.zipFile();
         }
     }
 

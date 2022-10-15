@@ -25,6 +25,7 @@ public class OutPutTask implements SchedulingConfigurer {
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
         taskRegistrar.addTriggerTask(() -> {
+            ff7ReArchiveService.zipFile();
             ff7ReArchiveService.cleanExpiredFile();
         }, triggerContext -> {
             // 此代码块用于动态拿到cron表达式并设置定时任务，当定时任务时间到了，就会重新获取cron表达式，重新设置定时任务

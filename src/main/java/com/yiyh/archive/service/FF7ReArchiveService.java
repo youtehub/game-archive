@@ -21,20 +21,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class FF7ReArchiveService {
 
-    @Value("${ff7re.sourcePath}")
+    @Value("${ff7re_sourcePath}")
     private String sourcePath;
-    @Value("${ff7re.remotePath}")
+    @Value("${ff7re_remotePath}")
     private String remotePath;
-    @Value("${ff7re.tempPath}")
+    @Value("${ff7re_tempPath}")
     private String tempPath;
-    @Value("${ff7re.suffix}")
-    private String suffix;
-    @Value("${ff7re.fileName}")
+    @Value("${ff7re_fileName}")
     private String fileName;
+
     @Value("${datePattern}")
     private String datePattern;
     @Value("${number}")
     private Integer number;
+    @Value("${suffix}")
+    private String suffix;
 
     public void cleanExpiredFile() {
         List<DeleteFile> fileList = findDeleteFile(remotePath, suffix);

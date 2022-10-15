@@ -17,10 +17,10 @@ public class FileArchiveApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(FileArchiveApplication.class, args);
-        ApplicationContext context = SpringUtil.getApplicationContext();
-        FF7ReArchiveService FF7ReArchiveService = context.getBean(FF7ReArchiveService.class);
-        ZipUtil.generateFile(FF7ReArchiveService);
-        FF7ReArchiveService.cleanExpiredFile();
+//        ApplicationContext context = SpringUtil.getApplicationContext();
+//        FF7ReArchiveService ff7ReArchiveService = context.getBean(FF7ReArchiveService.class);
+//        ZipUtil.generateFile(ff7ReArchiveService);
+//        ff7ReArchiveService.cleanExpiredFile();
     }
 
 

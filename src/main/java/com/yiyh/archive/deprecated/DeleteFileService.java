@@ -1,5 +1,11 @@
 package com.yiyh.archive.deprecated;
 
+import cn.hutool.core.date.LocalDateTimeUtil;
+import cn.hutool.core.io.FileUtil;
+import com.yiyh.archive.entity.DeleteFile;
+import com.yiyh.archive.filter.ExtFilter;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,15 +16,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import cn.hutool.core.date.LocalDateTimeUtil;
-import cn.hutool.core.io.FileUtil;
-import com.yiyh.archive.entity.DeleteFile;
-import com.yiyh.archive.filter.ExtFilter;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
 @Deprecated
-@Component
 public class DeleteFileService {
 
     @Value("${remotePath}")
