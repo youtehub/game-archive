@@ -1,4 +1,4 @@
-package com.yiyh.archive.delete;
+package com.yiyh.archive.filter;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -9,7 +9,7 @@ import java.io.FilenameFilter;
 public class ExtFilter implements FilenameFilter {
     private String ext;
 
-    ExtFilter(String ext) {
+    public ExtFilter(String ext) {
         this.ext = ext;
     }
 

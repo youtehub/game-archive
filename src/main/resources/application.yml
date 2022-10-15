@@ -3,8 +3,12 @@ server:
 
 com:
   delete-file:
-    sourcePath: C:\\Users\\WorkStation\\Documents\\My Games\\FINAL FANTASY VII REMAKE
-    remotePath: O:\\360云盘文件\\游戏存档\\最终幻想7-重置版
-    suffix: zip
-    fileName: 最终幻想7-重置版
-    cron: 0 0/10 * * * ?
+      ff7re:
+          sourcePath: C:\\Users\\WorkStation\\Documents\\My Games\\FINAL FANTASY VII REMAKE
+          tempPath: F:\\游戏存档\\最终幻想7-重置版
+          remotePath: O:\\360云盘文件\\游戏存档\\最终幻想7-重置版
+          suffix: zip
+          fileName: 最终幻想7-重置版
+          cron: 0 0/10 * * * ?
+          number: 10
+          datePattern: yyyyMMddHHmmss

@@ -1,6 +1,6 @@
 package com.yiyh.archive.scheduling;
 
-import com.yiyh.archive.delete.DeleteFileService;
+import com.yiyh.archive.service.FF7ReArchiveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
@@ -16,8 +16,7 @@ import org.springframework.stereotype.Component;
 public class OutPutTask implements SchedulingConfigurer {
 
     @Autowired
-    private DeleteFileService deleteFileService;
-
+    private FF7ReArchiveService ff7ReArchiveService;
     // 默认的cron表达式
     @Value("${cron}")
     private String cron;
@@ -26,7 +25,7 @@ public class OutPutTask implements SchedulingConfigurer {
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
         taskRegistrar.addTriggerTask(() -> {
-            deleteFileService.cleanExpiredFile();
+            ff7ReArchiveService.cleanExpiredFile();
         }, triggerContext -> {
             // 此代码块用于动态拿到cron表达式并设置定时任务，当定时任务时间到了，就会重新获取cron表达式，重新设置定时任务
             CronTrigger trigger;

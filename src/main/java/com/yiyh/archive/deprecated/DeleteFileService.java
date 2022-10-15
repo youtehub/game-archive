@@ -1,4 +1,4 @@
-package com.yiyh.archive.delete;
+package com.yiyh.archive.deprecated;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,13 +13,15 @@ import java.util.stream.Collectors;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.io.FileUtil;
 import com.yiyh.archive.entity.DeleteFile;
+import com.yiyh.archive.filter.ExtFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+@Deprecated
 @Component
 public class DeleteFileService {
 
-    @Value("${filePath}")
+    @Value("${remotePath}")
     private String filePath;
     @Value("${suffix}")
     private String suffix;
@@ -133,4 +135,3 @@ public class DeleteFileService {
         System.out.println(file.getName() + "已清理!!!");
     }
 }
-
