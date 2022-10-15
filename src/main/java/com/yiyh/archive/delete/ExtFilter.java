@@ -1,4 +1,4 @@
-package com.yiyh.file.delete;
+package com.yiyh.archive.delete;
 
 import java.io.File;
 import java.io.FilenameFilter;

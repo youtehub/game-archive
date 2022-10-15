@@ -1,10 +1,7 @@
-package com.yiyh.file.delete;
+package com.yiyh.archive.delete;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -15,13 +12,9 @@ import java.util.stream.Collectors;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.io.FileUtil;
-import com.yiyh.file.entity.DeleteFile;
+import com.yiyh.archive.entity.DeleteFile;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
-import sun.misc.IOUtils;
-
-import javax.annotation.PostConstruct;
 
 @Component
 public class DeleteFileService {

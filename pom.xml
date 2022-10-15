@@ -8,7 +8,7 @@
         <version>2.6.12</version>
         <relativePath/>
     </parent>
-    <groupId>com.yiyh.file</groupId>
+    <groupId>archive</groupId>
     <artifactId>game-archive</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>game-archive</name>

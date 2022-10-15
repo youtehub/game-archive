@@ -1,4 +1,4 @@
-package com.yiyh.file.entity;
+package com.yiyh.archive.entity;
 
 import java.time.LocalDateTime;
 

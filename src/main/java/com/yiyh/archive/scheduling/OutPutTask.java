@@ -1,18 +1,14 @@
-package com.yiyh.file.scheduling;
+package com.yiyh.archive.scheduling;
 
-import com.yiyh.file.delete.DeleteFileService;
-import com.yiyh.file.util.SpringUtil;
+import com.yiyh.archive.delete.DeleteFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Component;
-
-import java.util.Date;
 
 @Lazy(false)
 @Component

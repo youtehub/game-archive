@@ -1,4 +1,4 @@
-package com.yiyh.file.util;
+package com.yiyh.archive.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

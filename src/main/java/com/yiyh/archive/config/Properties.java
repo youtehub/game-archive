@@ -1,4 +1,4 @@
-package com.yiyh.file.config;
+package com.yiyh.archive.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
