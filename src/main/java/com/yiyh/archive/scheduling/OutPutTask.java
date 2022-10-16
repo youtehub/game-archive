@@ -1,6 +1,8 @@
 package com.yiyh.archive.scheduling;
 
-import com.yiyh.archive.service.FF7ReArchiveService;
+import com.yiyh.archive.entity.FilePathParam;
+import com.yiyh.archive.service.ArchiveService;
+import com.yiyh.archive.service.FileParamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
@@ -10,13 +12,13 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Component;
 
-@Lazy(false)
-@Component
-@EnableScheduling
+//@Lazy(false)
+//@Component
+//@EnableScheduling
 public class OutPutTask implements SchedulingConfigurer {
 
     @Autowired
-    private FF7ReArchiveService ff7ReArchiveService;
+    private FileParamService fileParamService;
     // 默认的cron表达式
     @Value("${cron}")
     private String cron;
@@ -25,8 +27,7 @@ public class OutPutTask implements SchedulingConfigurer {
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
         taskRegistrar.addTriggerTask(() -> {
-            ff7ReArchiveService.zipFile();
-            ff7ReArchiveService.cleanExpiredFile();
+            fileParamService.createArchive();
         }, triggerContext -> {
             // 此代码块用于动态拿到cron表达式并设置定时任务，当定时任务时间到了，就会重新获取cron表达式，重新设置定时任务
             CronTrigger trigger;

@@ -8,9 +8,9 @@ com:
       suffix: zip
       cron: 0 0/3 * * * ?
 
-      ff7re_sourcePath: C:\\Users\\WorkStation\\Documents\\My Games\\FINAL FANTASY VII REMAKE
-      ff7re_tempPath: F:\\游戏存档\\最终幻想7-重置版
-      ff7re_remotePath: O:\\360云盘文件\\游戏存档\\最终幻想7-重置版
-      ff7re_fileName: 最终幻想7-重置版
+      sourcePath: C:\\Users\\WorkStation\\Documents\\My Games\\FINAL FANTASY VII REMAKE
+      tempPath: F:\\游戏存档\\最终幻想7-重置版
+      remotePath: O:\\360云盘文件\\游戏存档\\最终幻想7-重置版
+      fileName: 最终幻想7-重置版
 
 

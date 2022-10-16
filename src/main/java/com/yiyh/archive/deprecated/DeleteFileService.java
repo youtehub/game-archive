@@ -2,7 +2,7 @@ package com.yiyh.archive.deprecated;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.io.FileUtil;
-import com.yiyh.archive.entity.DeleteFile;
+import com.yiyh.archive.entity.ArchiveFile;
 import com.yiyh.archive.filter.ExtFilter;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -28,17 +28,17 @@ public class DeleteFileService {
     private String fileName;
 
     public void cleanExpiredFile() {
-        List<DeleteFile> fileList = findDeleteFile(filePath, suffix);
+        List<ArchiveFile> fileList = findDeleteFile(filePath, suffix);
         if (fileList.size() > 10) {
-            List<DeleteFile> deletedFileList = fileList.stream()
-                    .sorted(Comparator.comparing(DeleteFile::getCreateTime)
+            List<ArchiveFile> deletedFileList = fileList.stream()
+                    .sorted(Comparator.comparing(ArchiveFile::getCreateTime)
                             .reversed())
                     .skip(10)
                     .collect(Collectors.toList());
-            for (DeleteFile file : deletedFileList) {
+            for (ArchiveFile file : deletedFileList) {
                 DeleteFileService.delPathFile(new File(file.getFileName()));
             }
-            List<DeleteFile> renameList = findDeleteFile(filePath, suffix);
+            List<ArchiveFile> renameList = findDeleteFile(filePath, suffix);
             //对文件进行重命名
             renameFile(filePath, renameList);
             //清除重命名前的文件
@@ -53,7 +53,7 @@ public class DeleteFileService {
      *
      * @param renameList 重命名文件集合
      */
-    private void cleanFile(List<DeleteFile> renameList) {
+    private void cleanFile(List<ArchiveFile> renameList) {
         for (int i = 0; i < renameList.size(); i++) {
             String fileName = renameList.get(i).getFileName();
             File file = new File(fileName);
@@ -67,16 +67,16 @@ public class DeleteFileService {
      * @param filePath   文件夹路径
      * @param renameList 重命名文件集合
      */
-    private void renameFile(String filePath, List<DeleteFile> renameList) {
+    private void renameFile(String filePath, List<ArchiveFile> renameList) {
         for (int i = 0; i < renameList.size(); i++) {
             try {
                 Thread.sleep(10000L);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            DeleteFile deleteFile = renameList.get(i);
-            File temp = new File(deleteFile.getFileName());
-            String createTime = LocalDateTimeUtil.format(deleteFile.getCreateTime(), "yyyy-MM-dd_HH_mm_ss");
+            ArchiveFile archiveFile = renameList.get(i);
+            File temp = new File(archiveFile.getFileName());
+            String createTime = LocalDateTimeUtil.format(archiveFile.getCreateTime(), "yyyy-MM-dd_HH_mm_ss");
             String timestamp = LocalDateTimeUtil.format(LocalDateTime.now(), "yyyyMMddHHmmss");
             if (temp.isFile()) {
                 String oldFileName = temp.getName();
@@ -93,16 +93,16 @@ public class DeleteFileService {
      * @param filePath
      * @return
      */
-    private List<DeleteFile> findDeleteFile(String filePath, String suffix) {
+    private List<ArchiveFile> findDeleteFile(String filePath, String suffix) {
         String[] zipFile = (new File(filePath)).list(new ExtFilter(suffix));
-        List<DeleteFile> fileList = new ArrayList<>();
+        List<ArchiveFile> fileList = new ArrayList<>();
         if (zipFile.length > 0) {
             fileList = Arrays.asList(zipFile).stream().map(file -> {
                         File deletedFile = new File(filePath + "\\" + file);
                         LocalDateTime createTime = DeleteFileService.getFileCreateTime(deletedFile.getAbsolutePath());
-                        return new DeleteFile(deletedFile.getAbsolutePath(), createTime);
+                        return new ArchiveFile(deletedFile.getAbsolutePath(), createTime);
                     })
-                    .sorted(Comparator.comparing(DeleteFile::getCreateTime))
+                    .sorted(Comparator.comparing(ArchiveFile::getCreateTime))
                     .collect(Collectors.toList());
         }
         return fileList;

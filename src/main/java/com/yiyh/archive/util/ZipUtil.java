@@ -1,6 +1,7 @@
 package com.yiyh.archive.util;
 
-import com.yiyh.archive.service.FF7ReArchiveService;
+import com.yiyh.archive.entity.FilePathParam;
+import com.yiyh.archive.service.ArchiveService;
 import org.apache.tools.zip.ZipOutputStream;
 
 import java.io.*;
@@ -29,10 +30,8 @@ public class ZipUtil {
      * 压缩文件
      * </p>
      *
-     * @param sourceFolder
-     *            需压缩文件 或者 文件夹 路径
-     * @param zipFilePath
-     *            压缩文件输出路径
+     * @param sourceFolder 需压缩文件 或者 文件夹 路径
+     * @param zipFilePath  压缩文件输出路径
      * @throws Exception
      */
     public static void zip(String sourceFolder, String zipFilePath) throws Exception {
@@ -55,14 +54,14 @@ public class ZipUtil {
         out.close();
     }
 
-    public static void generateFile(FF7ReArchiveService ff7ReArchiveService) {
+    public static void generateFile(ArchiveService archiveService, FilePathParam pathParam) {
         for (int i = 0; i < 15; i++) {
             try {
-                Thread.sleep(10000L);
+                Thread.sleep(3000L);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            ff7ReArchiveService.zipFile();
+            archiveService.zipFile(pathParam);
         }
     }
 
@@ -71,10 +70,8 @@ public class ZipUtil {
      * 压缩文件
      * </p>
      *
-     * @param sourceFolders
-     *            一组 压缩文件夹 或 文件
-     * @param zipFilePath
-     *            压缩文件输出路径
+     * @param sourceFolders 一组 压缩文件夹 或 文件
+     * @param zipFilePath   压缩文件输出路径
      * @throws Exception
      */
     public static void zip(String[] sourceFolders, String zipFilePath) throws Exception {
@@ -108,8 +105,7 @@ public class ZipUtil {
      * @param zos
      * @throws Exception
      */
-    private static void zipFile(File parentFile, String basePath, ZipOutputStream zos)
-            throws Exception {
+    private static void zipFile(File parentFile, String basePath, ZipOutputStream zos) throws Exception {
         File[] files = new File[0];
         if (parentFile.isDirectory()) {
             files = parentFile.listFiles();
@@ -163,7 +159,7 @@ public class ZipUtil {
         }
         // 解决zip文件中有中文目录或者中文文件
         ZipFile zip = new ZipFile(zipFile, Charset.forName("GBK"));
-        for (Enumeration entries = zip.entries(); entries.hasMoreElements();) {
+        for (Enumeration entries = zip.entries(); entries.hasMoreElements(); ) {
             ZipEntry entry = (ZipEntry) entries.nextElement();
             String zipEntryName = entry.getName();
             InputStream in = zip.getInputStream(entry);

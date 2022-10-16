@@ -1,8 +1,8 @@
 package com.yiyh.archive;
 
 import cn.hutool.extra.spring.SpringUtil;
-import com.yiyh.archive.service.FF7ReArchiveService;
-import com.yiyh.archive.util.ZipUtil;
+import com.yiyh.archive.service.FileParamService;
+import com.yiyh.archive.util.ThreadLocalUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -18,9 +18,8 @@ public class FileArchiveApplication {
     public static void main(String[] args) {
         SpringApplication.run(FileArchiveApplication.class, args);
 //        ApplicationContext context = SpringUtil.getApplicationContext();
-//        FF7ReArchiveService ff7ReArchiveService = context.getBean(FF7ReArchiveService.class);
-//        ZipUtil.generateFile(ff7ReArchiveService);
-//        ff7ReArchiveService.cleanExpiredFile();
+//        FileParamService fileParamService = context.getBean(FileParamService.class);
+//        fileParamService.createArchive();
     }
 
 

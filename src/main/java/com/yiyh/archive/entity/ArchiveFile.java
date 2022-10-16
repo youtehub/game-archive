@@ -5,16 +5,16 @@ import java.time.LocalDateTime;
 /**
  * 需要删除的文件
  */
-public class DeleteFile{
+public class ArchiveFile {
 
     private String fileName;
 
     private LocalDateTime createTime;
 
-    public DeleteFile() {
+    public ArchiveFile() {
     }
 
-    public DeleteFile(String fileName, LocalDateTime createTime) {
+    public ArchiveFile(String fileName, LocalDateTime createTime) {
         this.fileName = fileName;
         this.createTime = createTime;
     }
