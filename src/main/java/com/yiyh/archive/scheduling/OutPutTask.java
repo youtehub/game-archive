@@ -12,9 +12,9 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Component;
 
-//@Lazy(false)
-//@Component
-//@EnableScheduling
+@Lazy(false)
+@Component
+@EnableScheduling
 public class OutPutTask implements SchedulingConfigurer {
 
     @Autowired
