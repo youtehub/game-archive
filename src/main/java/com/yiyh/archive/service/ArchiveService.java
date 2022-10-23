@@ -53,7 +53,6 @@ public class ArchiveService {
             fileList = Arrays.asList(zipFile).stream()
                     .map(file -> {
                         String deletedPath = pathParam.getRemotePath() + "\\" + file;
-//                        LocalDateTime fileCreateTime = getFileCreateTime(deletedPath);
                         String createTimeStr = file.substring(file.indexOf("_") + 1, file.indexOf("."));
                         DateTimeFormatter dtf = DateTimeFormatter.ofPattern(pathParam.getDatePattern());
                         LocalDateTime createTime = LocalDateTime.parse(createTimeStr, dtf);
