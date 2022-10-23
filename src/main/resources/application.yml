@@ -3,10 +3,10 @@ server:
 
 com:
   delete-file:
-      number: 10
+      number: 30
       datePattern: yyyyMMddHHmmss
       suffix: zip
-      cron: 0 0/3 * * * ?
+      cron: 0 0/10 * * * ?
 
       sourcePath: C:\\Users\\WorkStation\\Documents\\My Games\\FINAL FANTASY VII REMAKE
       tempPath: F:\\游戏存档\\最终幻想7-重置版

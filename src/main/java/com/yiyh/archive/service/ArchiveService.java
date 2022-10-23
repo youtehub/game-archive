@@ -9,15 +9,15 @@ import com.yiyh.archive.util.ZipUtil;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -53,6 +53,7 @@ public class ArchiveService {
             fileList = Arrays.asList(zipFile).stream()
                     .map(file -> {
                         String deletedPath = pathParam.getRemotePath() + "\\" + file;
+//                        LocalDateTime fileCreateTime = getFileCreateTime(deletedPath);
                         String createTimeStr = file.substring(file.indexOf("_") + 1, file.indexOf("."));
                         DateTimeFormatter dtf = DateTimeFormatter.ofPattern(pathParam.getDatePattern());
                         LocalDateTime createTime = LocalDateTime.parse(createTimeStr, dtf);
@@ -63,6 +64,18 @@ public class ArchiveService {
         }
         return fileList;
     }
+
+    private static LocalDateTime getFileCreateTime(String filePath) {
+        FileTime fileTime = null;
+        try {
+            fileTime = Files.readAttributes(Paths.get(filePath), BasicFileAttributes.class).creationTime();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        LocalDateTime localDateTime = LocalDateTimeUtil.of(fileTime.toMillis(), TimeZone.getDefault());
+        return localDateTime;
+    }
+
 
     /**
      * 压缩，上传文件
@@ -80,8 +93,11 @@ public class ArchiveService {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        File modifyFile = new File(tempFile);
+        boolean modified = modifyFile.setLastModified(new Date().getTime());
         FileUtil.copyFile(tempFile, remoteFile);
         FileUtil.del(pathParam.getTempPath());
+        LocalDateTime fileCreateTime = getFileCreateTime(remoteFile);
     }
 }
 
