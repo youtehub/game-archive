@@ -87,7 +87,7 @@ public class ArchiveService {
         try {
             Path path = Paths.get(pathParam.getTempPath());
             FileUtil.del(pathParam.getTempPath());
-            Files.createDirectory(path);
+            Files.createDirectories(path);
             ZipUtil.zip(pathParam.getSourcePath(), tempFile);
         } catch (Exception e) {
             throw new RuntimeException(e);

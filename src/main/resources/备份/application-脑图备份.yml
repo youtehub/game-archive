@@ -1,0 +1,16 @@
+server:
+  port: 86630
+
+com:
+  delete-file:
+      number: 30
+      datePattern: yyyyMMddHHmmss
+      suffix: zip
+      cron: 0 0/10 * * * ?
+
+      sourcePath: E:\\软件开发\\学习笔记记录\\软件工程
+      tempPath: F:\\游戏存档\\学习笔记记录\\软件工程
+      remotePath: O:\\360云盘文件\\游戏存档\\学习笔记记录\\软件工程
+      fileName: 软件工程
+
+
