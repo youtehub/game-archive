@@ -2,6 +2,8 @@ package com.yiyh.archive.service;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.log.level.Level;
 import com.yiyh.archive.entity.ArchiveFile;
 import com.yiyh.archive.entity.FilePathParam;
 import com.yiyh.archive.filter.ExtFilter;
@@ -52,12 +54,21 @@ public class ArchiveService {
         if (zipFile.length > 0) {
             fileList = Arrays.asList(zipFile).stream()
                     .map(file -> {
+
                         String deletedPath = pathParam.getRemotePath() + "\\" + file;
-                        String createTimeStr = file.substring(file.indexOf("_") + 1, file.indexOf("."));
-                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(pathParam.getDatePattern());
-                        LocalDateTime createTime = LocalDateTime.parse(createTimeStr, dtf);
-                        return new ArchiveFile(deletedPath, createTime);
+                        ArchiveFile archiveFile = null;
+                        try {
+                            String createTimeStr = file.substring(file.indexOf("_") + 1, file.indexOf("."));
+                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern(pathParam.getDatePattern());
+                            LocalDateTime createTime = LocalDateTime.parse(createTimeStr, dtf);
+                            archiveFile = new ArchiveFile(deletedPath, createTime);
+                        } catch (Exception e) {
+                            FileUtil.del(deletedPath);
+                           ZipUtil.LOG.log(Level.INFO,"错误消息是"+e.getMessage()+"，文件名为 "+file+" 时间格式自动生成错误导致报错，已自动删除文件");
+                        }
+                        return archiveFile;
                     })
+                    .filter(ObjectUtil::isNotNull)
                     .sorted(Comparator.comparing(ArchiveFile::getCreateTime))
                     .collect(Collectors.toList());
         }

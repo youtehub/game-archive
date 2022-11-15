@@ -1,5 +1,7 @@
 package com.yiyh.archive.util;
 
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 import com.yiyh.archive.entity.FilePathParam;
 import com.yiyh.archive.service.ArchiveService;
 import org.apache.tools.zip.ZipOutputStream;
@@ -20,6 +22,9 @@ public class ZipUtil {
      * 文件读取缓冲区大小
      */
     private static final int CACHE_SIZE = 1024;
+
+
+    public static Log LOG = LogFactory.get();
 
     private ZipUtil() {
         // 私用构造主法.因为此类是工具类.
