@@ -17,9 +17,9 @@ public class FileArchiveApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(FileArchiveApplication.class, args);
-        ApplicationContext context = SpringUtil.getApplicationContext();
-        FileParamService fileParamService = context.getBean(FileParamService.class);
-        fileParamService.createArchive();
+//        ApplicationContext context = SpringUtil.getApplicationContext();
+//        FileParamService fileParamService = context.getBean(FileParamService.class);
+//        fileParamService.createArchive();
     }
 
 
