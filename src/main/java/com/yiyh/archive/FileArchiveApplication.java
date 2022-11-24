@@ -17,10 +17,14 @@ public class FileArchiveApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(FileArchiveApplication.class, args);
-//        ApplicationContext context = SpringUtil.getApplicationContext();
-//        FileParamService fileParamService = context.getBean(FileParamService.class);
-//        fileParamService.createArchive();
+        //测试备份方法执行情况
+        testBackup();
     }
 
 
+    private static void testBackup() {
+        ApplicationContext context = SpringUtil.getApplicationContext();
+        FileParamService fileParamService = context.getBean(FileParamService.class);
+        fileParamService.createArchive();
+    }
 }
