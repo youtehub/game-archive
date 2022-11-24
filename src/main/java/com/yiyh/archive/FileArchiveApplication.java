@@ -18,7 +18,7 @@ public class FileArchiveApplication {
     public static void main(String[] args) {
         SpringApplication.run(FileArchiveApplication.class, args);
         //测试备份方法执行情况
-        testBackup();
+//        testBackup();
     }
 
 
