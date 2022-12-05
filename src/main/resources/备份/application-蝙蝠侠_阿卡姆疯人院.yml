@@ -1,0 +1,16 @@
+server:
+  port: 85630
+
+com:
+  delete-file:
+      number: 30
+      datePattern: yyyyMMddHHmmss
+      suffix: zip
+      cron: 0 0/10 * * * ?
+
+      sourcePath: C:\ProgramData\Steam\RLD!
+      tempPath: F:\\游戏存档\\蝙蝠侠-阿卡姆疯人院
+      remotePath: O:\\360云盘文件\\游戏存档\\蝙蝠侠-阿卡姆疯人院
+      fileName: 蝙蝠侠-阿卡姆疯人院-存档
+
+
